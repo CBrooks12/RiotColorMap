@@ -16,6 +16,12 @@ import com.google.gson.reflect.TypeToken;
 import dto.Match.MatchDetail;
 
 public class ReadData{
+	String pathName;
+	public ReadData(String aPathName)
+	{
+		pathName = aPathName;
+	}
+	
 	Gson gson = new Gson();
 	public List<Coords> getCoordDataFile(String fileName)
 	{
@@ -28,7 +34,7 @@ public class ReadData{
 			List<Coords> tempList = new ArrayList<Coords>();
 			try {
 				System.out.println("retrieving file "+fileNumber);
-				obj = gson.fromJson(new FileReader(fileName+Integer.toString(fileNumber)+".json"), Coords[].class);
+				obj = gson.fromJson(new FileReader(pathName + fileName+Integer.toString(fileNumber)+".json"), Coords[].class);
 				fullList.addAll(Arrays.asList(obj));
 				fileNumber++;
 			} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
@@ -47,7 +53,7 @@ public class ReadData{
 		List<?> aList = null;
 		boolean pass = false;
 		try {
-			Long [] obj = gson.fromJson(new FileReader(fileName+".json"), Long[].class);
+			Long [] obj = gson.fromJson(new FileReader(pathName + fileName+".json"), Long[].class);
 			aList = Arrays.asList(obj);
 			pass = true;
 			return aList;
@@ -70,7 +76,7 @@ public class ReadData{
 				List<MatchDetail> tempList = new ArrayList<MatchDetail>();
 				try {
 					System.out.println("retrieving file "+fileNumber);
-					MatchDetail [] obj = gson.fromJson(new FileReader(fileName+Integer.toString(fileNumber)+".json"), MatchDetail[].class);
+					MatchDetail [] obj = gson.fromJson(new FileReader(pathName + fileName+Integer.toString(fileNumber)+".json"), MatchDetail[].class);
 					//Type collectionType = new TypeToken<Collection<MatchDetail>>(){}.getType();
 					//Collection<MatchDetail> aCollection = gson.fromJson(br, collectionType);
 					tempList = Arrays.asList(obj);
@@ -86,6 +92,9 @@ public class ReadData{
 					e.printStackTrace();
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
+					pass = true;
+					e.printStackTrace();
+				}catch(NullPointerException e) {
 					pass = true;
 					e.printStackTrace();
 				}

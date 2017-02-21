@@ -16,14 +16,14 @@ import dto.MatchList.MatchReference;
 public class SaveToFile {
 	FileWriter writer;
 	BufferedWriter bf;
-	
-	public SaveToFile()
+	String path = "/home/chris/riotData/";
+	public SaveToFile(String aPath)
 	{
-		
+		path = aPath;
 	}
-	public SaveToFile(String fileName, int fileNumber)
+	public SaveToFile(String user, String fileName, int fileNumber)
 	{
-		fileName = "e:/Completed/" + fileName + Integer.toString(fileNumber) +".json";
+		fileName = path + user + "/Completed/" + fileName + Integer.toString(fileNumber) +".json";
 		try {
 			writer = new FileWriter(fileName);
 			bf = new BufferedWriter(writer);

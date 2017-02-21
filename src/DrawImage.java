@@ -59,7 +59,7 @@ public class DrawImage extends JPanel {
         	for(Event e: aCoord.filteredEvents)
         	{
         		Pair<Integer,Integer> localPair = new Pair<Integer,Integer>(e.getPosition().getX(),e.getPosition().getY());
-        		color = getColorLaners(aCoord.participantData,e,2);//Color.GRAY.getRGB();
+        		color = getColorLaners(aCoord.participantData,e,0);//Color.GRAY.getRGB();
         		localPair = resizePair(mapMaxCoords,picutreMaxCoords,localPair,true);
             	if(!(localPair.getValue0()<0||localPair.getValue1()<0))
             	{
