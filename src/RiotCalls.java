@@ -8,7 +8,7 @@ import dto.MatchList.MatchList;
 import dto.Summoner.Summoner;
 
 public class RiotCalls {
-	RiotApi api = new RiotApi("b7d4f9d3-abbb-4010-a4a4-d57f8030d497");
+	RiotApi api = new RiotApi("your-key-here");
 	public MatchList getMatchList(String queueType, Long summonerId) throws RiotApiException{
 		return api.getMatchList(Region.NA, summonerId);
 	};
